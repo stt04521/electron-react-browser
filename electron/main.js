@@ -68,4 +68,5 @@ ipcMain.on('open-window', (event, args) => {
     const win = new BrowserWindow(args.options);
     win.once('ready-to-show', () => win.show());
     win.loadURL(args.url);
+    //win.setMenu(null);
 });
