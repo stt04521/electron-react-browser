@@ -1,0 +1,4 @@
+src/**/*-test.js
+src/js/utils
+common
+electron
