@@ -3,4 +3,4 @@ dist
 package-lock.json
 .idea
 electron_build
-electron\web
+electron/web
