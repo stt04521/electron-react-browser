@@ -21,25 +21,18 @@ export default class Menu extends Component {
         });
     };
     openPDFWindow = () => {
-        let file = 'http://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf';
-        file = 'file://D:/Workspaces/yuanshutech/yuanshutong/common/electron/123.pdf';
-        console.log(__dirname);
-        let windowURLPath = url.format({
-            protocol: 'file:',
-            pathname: path.join('D:/Workspaces/yuanshutech/yuanshutong/common/electron/pdfjs/web/viewer.html?file=', file),
-            slashes: true
-        })
-
-        windowURLPath = 'D:/Workspaces/yuanshutech/yuanshutong/common/electron/pdfjs/web/viewer.html?file=' + file;
-
-        ipcRenderer.send('open-window', {
-            url: windowURLPath,
-            options: {
-                title: 'PDF浏览',
-                width: 400,
-                height: 600
-            }
-        });
+        // let file = 'http://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf';
+        // file = 'file://D:/Workspaces/yuanshutech/yuanshutong/common/electron/123.pdf';
+        // console.log(__dirname);
+        // let windowURLPath = url.format({
+        //     protocol: 'file:',
+        //     pathname: path.join('D:/Workspaces/yuanshutech/yuanshutong/common/electron/pdfjs/web/viewer.html?file=', file),
+        //     slashes: true
+        // })
+        //
+        // windowURLPath = 'D:/Workspaces/yuanshutech/yuanshutong/common/electron/pdfjs/web/viewer.html?file=' + file;
+        console.log('1111')
+        ipcRenderer.send('file', ['markdown']);
     };
     render () {
         const data = [

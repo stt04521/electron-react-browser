@@ -4,6 +4,7 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const _ = require('lodash');
+const url = require('url');
 const { child_process, exec } = require('child_process');
 
 const ysfsPath = path.join(__dirname, '../ysfs/');
@@ -14,7 +15,8 @@ let windowHandleArr = [];
 let dist;
 if (process.env.NODE_ENV === 'dev') {
     dist = {
-        home: 'http://localhost:1313'
+        home: 'http://localhost:1313',
+        markdown: 'markdown/index.html'
     };
 } else {
     dist = path.join(__dirname, '../dist');
@@ -52,6 +54,30 @@ function ipcMsgPump() {
         if (index === -1) return;
         windowHandleArr[index].handle.minimize();
     });
+
+    ipcMain.on('file', (event, args) => {
+        const fileUrl = url.format({
+            protocol: 'file:',
+            pathname: path.join(__dirname, dist[args[0]]),
+            slashes: true
+        });
+        console.log(fileUrl);
+        const win = new BrowserWindow({
+            minWidth: 900,
+            //maxWidth: width,
+            minHeight: 600,
+            width: 900,
+            height: 600,
+            resizable: true,
+            // autoHideMenuBar: true,
+            // frame: false,
+            show: false,
+            title: args[0]
+        });
+        win.once('ready-to-show', () => win.show());
+        win.loadURL(fileUrl);
+    });
+
 
     ipcMain.on('close', (event, args) => {
         const index = _.findIndex(windowHandleArr, { name: args[0] });

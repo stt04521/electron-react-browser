@@ -4,7 +4,7 @@ const ipcMain = electron.ipcMain;
 const BrowserWindow = electron.BrowserWindow;
 
 const { ipcMsgPump } = require('./window');
-
+ipcMsgPump();
 const path = require('path');
 const url = require('url');
 
@@ -16,7 +16,7 @@ let title = '元数通';
 let windowURLPath;
 
 if (process.env.NODE_ENV === 'dev')
-    windowURLPath = "http://localhost:1313/menu.html";
+    windowURLPath = "http://localhost:1313/menu.html#/menu";
 else
     windowURLPath = url.format({
         protocol: 'file:',
