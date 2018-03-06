@@ -3,7 +3,6 @@
  */
 import React, { Component } from 'react';
 // import './App.css';
-import MediaElement from '../component/player.MediaElement';
 
 export default class App extends Component {
     // Other code
@@ -18,17 +17,8 @@ export default class App extends Component {
         tracks = {};
 
         return (
-            <MediaElement
-                id='player1'
-                mediaType='video'
-                preload='none'
-                controls
-                width='640'
-                height='360'
-                poster=''
-                sources={JSON.stringify(sources)}
-                options={JSON.stringify(config)}
-                tracks={JSON.stringify(tracks)}
-            />);
+            <video src='http://192.168.1.163:8080/ipfs/QmRDVC6FQyggs3K2rG8M2BuRmp2jbXzEYTttQ3UuKPhxva' controls='controls'>
+                您的浏览器不支持 video 标签。
+            </video>);
     }
 }
