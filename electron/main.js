@@ -16,11 +16,11 @@ let title = '元数通';
 let windowURLPath;
 
 if (process.env.NODE_ENV === 'dev')
-    windowURLPath = "http://localhost:1313/menu.html";
+    windowURLPath = "http://localhost:1313/markdown.html";
 else
     windowURLPath = url.format({
         protocol: 'file:',
-        pathname: path.join(__dirname, 'web/menu.html'),
+        pathname: path.join(__dirname, 'web/markdown.html'),
         slashes: true
     })
 

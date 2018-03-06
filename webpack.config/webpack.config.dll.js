@@ -7,7 +7,6 @@ const webpackBase = require('./webpack.config.base');
 const webpackMerge = require('webpack-merge');
 const webpack = require('webpack');
 const config = require('./config');
-
 const dist = path.resolve(process.cwd(), 'lib');
 const noBuild = ['font-awesome', 'antd' ];
 
@@ -68,6 +67,12 @@ module.exports = webpackMerge.smart(webpackBase, {
         new webpack.DllPlugin({
             path: path.join(dist, '[name].json'),
             name: '[name]',
+        }),
+        new webpack.ProvidePlugin({
+            $:"jquery",
+            jQuery:"jquery",
+            "window.jQuery":"jquery"
+
         })
     ]
 });

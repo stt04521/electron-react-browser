@@ -9,21 +9,21 @@
 </head>
 
 <body style="overflow-y:hidden; background-color: transparent;">
-    <div id="root"></div>
-    <script>
-        var zoom = function (e) {
-            var e = e || window.event;
-            if (e.wheelDelta && event.ctrlKey) {
-                event.returnValue = false
-            } else if (e.detail) {
-                event.returnValue = false;
-            }
+<div id="root"></div>
+<script>
+    var zoom = function (e) {
+        var e = e || window.event;
+        if (e.wheelDelta && event.ctrlKey) {
+            event.returnValue = false
+        } else if (e.detail) {
+            event.returnValue = false;
         }
-        if (document.addEventListener) {
-            document.addEventListener('DOMMouseScroll', zoom, false);
-        }
-        window.onmousewheel = document.onmousewheel = zoom;
-    </script>
+    }
+    if (document.addEventListener) {
+        document.addEventListener('DOMMouseScroll', zoom, false);
+    }
+    window.onmousewheel = document.onmousewheel = zoom;
+</script>
 </body>
 
 </html>

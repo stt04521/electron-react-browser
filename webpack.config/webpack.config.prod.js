@@ -103,10 +103,18 @@ module.exports = webpackMerge.smart(webpackBase, {
             // chunk 名为 commons
             name: 'commons',
             filename: '[name].bundle.js',
-        })
+        }),
         // new BundleAnalyzerPlugin({
         //     analyzerMode: 'server',
         //     openAnalyzer: true
         // })
+        new webpack.ProvidePlugin({
+
+            $:"jquery",
+            jQuery:"jquery",
+            "window.jQuery":"jquery"
+
+        })
     ]
+
 });
