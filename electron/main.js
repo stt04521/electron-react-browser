@@ -16,7 +16,7 @@ let title = '元数通';
 let windowURLPath;
 
 if (process.env.NODE_ENV === 'dev')
-    windowURLPath = "http://localhost:1313/menu.html#/menu";
+    windowURLPath = "http://localhost:1313/menu.html";
 else
     windowURLPath = url.format({
         protocol: 'file:',
