@@ -2,11 +2,11 @@
  * Created by shishitengteng on 2018/2/27.
  */
 import React, { Component } from 'react';
-import 'hls.js';
-import 'mediaelement';
+// import 'hls.js';
+// import 'mediaelement';
 
 // Import stylesheet and shims
-import 'mediaelement/build/mediaelementplayer.min.css';
+// import 'mediaelement/build/mediaelementplayer.min.css';
 // import 'mediaelement/build/mediaelement-flash-video.swf';
 
 export default class MediaElement extends Component {
