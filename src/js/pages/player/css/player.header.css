@@ -1,0 +1,27 @@
+.homeTitle{
+    width: 100%;
+    background-color: rgba(43, 51, 63, 0.7);
+    height: 38px;
+}
+.homeClose{
+    float: right;
+    color: white;
+}
+.homeClose span{
+    width: 20px;
+    display: inline-block;
+    height: 38px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 38px;
+    margin-right: 3px;
+}
+
+.homeLogo{
+    margin-left: 3px;
+    color: white;
+}
+.homeLogo span{
+    height: 38px;
+    line-height: 38px;
+}

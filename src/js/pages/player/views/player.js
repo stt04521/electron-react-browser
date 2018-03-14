@@ -2,23 +2,36 @@
  * Created by shishitengteng on 2018/2/27.
  */
 import React, { Component } from 'react';
-// import './App.css';
+import { Player, ControlBar, ReplayControl, ForwardControl, BigPlayButton, PlaybackRateMenuButton, VolumeMenuButton } from 'video-react';
+import 'video-react/dist/video-react.css';
+import DownloadButton from '../component/player.downloadButton';
+import Header from '../component/player.header';
+import Describe from '../component/player.describe';
 
-export default class App extends Component {
-    // Other code
-
+export default class Vplayer extends Component {
     render () {
-        const sources = [
-            { src: 'http://www.streambox.fr/playlists/test_001/stream.m3u8', type: 'application/x-mpegURL' },
-            { src: 'http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4', type: 'video/mp4' },
-            { src: 'rtmp://firehose.cul.columbia.edu:1935/vod/mp4:sample.mp4', type: 'video/rtmp' }
-        ],
-        config = {},
-        tracks = {};
-
         return (
-            <video src='http://192.168.1.163:8080/ipfs/QmRDVC6FQyggs3K2rG8M2BuRmp2jbXzEYTttQ3UuKPhxva' controls='controls'>
-                您的浏览器不支持 video 标签。
-            </video>);
+            <div className='player'>
+                <Header />
+                <Player
+                    autoPlay={false}
+                >
+                    <source src='http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4' />
+                    <ControlBar autoHide={false}>
+                        <BigPlayButton position='center' />
+                        <ReplayControl seconds={10} order={1.1} />
+                        <ForwardControl seconds={30} order={1.2} />
+                        <VolumeMenuButton vertical />
+                        <PlaybackRateMenuButton
+                            rates={[5, 2, 1, 0.5, 0.1]}
+                            order={7.1}
+                        />
+                        <VolumeMenuButton disabled />
+                        <DownloadButton order={7} />
+                    </ControlBar>
+                </Player>
+                <Describe />
+            </div>
+        );
     }
 }

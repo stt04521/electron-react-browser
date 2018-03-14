@@ -6,41 +6,50 @@ import { List } from 'antd';
 import { ipcRenderer } from 'electron';
 import path from 'path';
 import url from 'url';
-// import './App.css';
 
 export default class Menu extends Component {
     // Other code
     openPlayer = () => {
-        ipcRenderer.send('open-window', {
+        ipcRenderer.send('open', {
             url: 'http://localhost:1313/player.html#/home',
             options: {
-                title: '视频播放',
-                width: 400,
-                height: 600
+                title: 'player',
+                width: 900,
+                height: 600,
+                // frame:false,
+                resizable: false
+            }
+        });
+    };
+    openBrowser = () => {
+        ipcRenderer.send('open', {
+            url: 'http://localhost:1313/browser.html#/browser',
+            options: {
+                title: 'player',
+                width: 900,
+                height: 600,
+                // frame:false,
+                resizable: false
             }
         });
     };
     openPDFWindow = () => {
-        // let file = 'http://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf';
-        // file = 'file://D:/Workspaces/yuanshutech/yuanshutong/common/electron/123.pdf';
-        // console.log(__dirname);
-        // let windowURLPath = url.format({
-        //     protocol: 'file:',
-        //     pathname: path.join('D:/Workspaces/yuanshutech/yuanshutong/common/electron/pdfjs/web/viewer.html?file=', file),
-        //     slashes: true
-        // })
-        //
-        // windowURLPath = 'D:/Workspaces/yuanshutech/yuanshutong/common/electron/pdfjs/web/viewer.html?file=' + file;
-        console.log('1111')
-        ipcRenderer.send('file', ['markdown']);
+        ipcRenderer.send('pdf', {
+            url: 'http://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf',
+            options: {
+                title: 'pdf',
+                width: 900,
+                height: 600,
+                // frame:false,
+                resizable: false
+            }
+        });
     };
     render () {
         const data = [
             <span onClick={this.openPlayer}>打开视频播放窗口</span>,
             <span onClick={this.openPDFWindow}>打开PDF浏览窗口</span>,
-            'Australian walks 100km after outback crash.',
-            'Man charged over missing wedding girl.',
-            'Los Angeles battles huge wildfires.',
+            <span onClick={this.openBrowser}>小型浏览器</span>
         ];
         return (<div style={{ padding: 20 }}>
             <h3 style={{ marginBottom: 16 }}>Menu</h3>

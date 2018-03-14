@@ -1,0 +1,15 @@
+#root{
+    height: 100%;
+}
+.player{
+    height: 100%;
+}
+.describe .ant-card-body{
+    padding: 5px;
+}
+.describe p{
+    margin-bottom: 5px;
+}
+.describe .ant-card-bordered{
+    border: none;
+}

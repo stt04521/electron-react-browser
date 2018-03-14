@@ -88,7 +88,7 @@ module.exports = webpackMerge.smart(webpackBase, {
             },
             {
                 test: /\.css$/,
-                include: path.resolve(__dirname, '../src/js/style'),
+                include: path.resolve(__dirname, '../src/style'),
                 loader: 'style-loader!css-loader'
             }]
     },

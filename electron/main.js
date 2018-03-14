@@ -10,7 +10,7 @@ const url = require('url');
 
 
 // 设置主进程窗口标题
-let title = '元数通';
+let title = 'menu';
 
 // 设置应用登录窗口打开路径
 let windowURLPath;
@@ -64,9 +64,3 @@ app.on('activate', function () {
     }
 })
 
-ipcMain.on('open-window', (event, args) => {
-    const win = new BrowserWindow(args.options);
-    win.once('ready-to-show', () => win.show());
-    win.loadURL(args.url);
-    //win.setMenu(null);
-});

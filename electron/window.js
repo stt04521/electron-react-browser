@@ -6,6 +6,7 @@ const path = require('path');
 const _ = require('lodash');
 const url = require('url');
 const { child_process, exec } = require('child_process');
+const PDFWindow = require('electron-pdf-window')
 
 const ysfsPath = path.join(__dirname, '../ysfs/');
 const ysfsInitPath = path.join(ysfsPath, '.ysfs/');
@@ -28,24 +29,18 @@ function ipcMsgPump() {
     });
 
     ipcMain.on('open', (event, args) => {
-        if (_.findIndex(windowHandleArr, { name: args[0] }) === -1) {
-            const width = (args[1].indexOf('/home.html') !== -1) ? 320 : 900;
-            const height = (args[1].indexOf('/home.html') !== -1) ? 690 : 600;
-            const win = new BrowserWindow({
-                minWidth: width,
-                //maxWidth: width,
-                minHeight: height,
-                width: width,
-                height: height,
-                resizable: true,
-                // autoHideMenuBar: true,
-                // frame: false,
-                show: false,
-                title: args[0]
-            });
+        if (_.findIndex(windowHandleArr, { name: args.options.title }) === -1) {
+            const win = new BrowserWindow(args.options);
             win.once('ready-to-show', () => win.show());
-            win.loadURL(dist[args[0]] + args[1]);
-            win.webContents.openDevTools();
+            win.loadURL(args.url);
+        }
+    });
+
+    ipcMain.on('pdf', (event, args) => {
+        if (_.findIndex(windowHandleArr, { name: args.options.title }) === -1) {
+            const win = new PDFWindow(args.options);
+            win.once('ready-to-show', () => win.show());
+            win.loadURL(args.url);
         }
     });
 
@@ -82,6 +77,7 @@ function ipcMsgPump() {
     ipcMain.on('close', (event, args) => {
         const index = _.findIndex(windowHandleArr, { name: args[0] });
         if (index === -1) return;
+        console.log('11');
         windowHandleArr[index].handle.close();
         _.pullAt(windowHandleArr, index);
     });
