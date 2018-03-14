@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8" />
+    <title>Custom keyboard shortcuts - Editor.md examples</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/editormd.css" />
+    <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon" />
+</head>
+<style>
+    .editormd-toolbar{
+        display:none!important;
+    }
+    ul.a{width:100%;cursor:pointer;padding:0 0px;color:white;}
+    ul.a li{list-style-type:none;cursor:pointer;background:#fff;padding:5px 10px;color:black;width:90%;display:none}
+    .treelist{width:92px;}
+    ul.a div{height:34px;width:100%; padding-left:27px;padding-top:6px;color:#333333;font-weight:bold;font-size:15px}
+    .shows{display:block}
+</style>
+<body>
+<div style="width:900px;height:50px;background-color: #333333;">
+    <div style="float:left;">
+        <div style="color: #ffffff;display:inline-block;margin-right: 26px;margin-top: 14px;margin-left:21px;font-size:16px" >文件名称.md</div>
+        <div style="color: #ffffff;display:inline-block;font-size:16px">查阅源码</div>
+    </div>
+    <div style="clear:both;"></div>
+    <div class="treelist" style="margin-left: -10px;float:left;margin-top: 22px;">
+
+
+
+
+    </div>
+</div>
+<div id="layout">
+   <div style="border:1px solid #F0F8FF;overflow-y: scroll;height:450px;width:740px;margin-top:17px;margin-left: 105px;">
+    <div id="test-editormd" >
+
+                <textarea style="display:none;">#### Default
+
+> If Editor.md code editor is on focus, you can use keyboard shortcuts.
+> Editor.md have the default keyboard shortcuts handle. Plaese open the help dialog, can see all default keyboard shortcuts.
+
+#### Example
+
+```javascript
+var testEditor = editormd("test-editormd", {
+    width: "90%",
+    height: 720,
+    path : '../lib/',
+    disabledKeyMaps : [
+        "Ctrl-B", "F11", "F10"  // disable some default keyboard shortcuts handle
+    ],
+    onload : function() {
+        var keyMap = {
+            "Ctrl-S": function(cm) {
+                alert("Ctrl+S");
+            },
+            "Ctrl-A": function(cm) { // default Ctrl-A selectAll
+                // custom
+                alert("Ctrl+A");
+                cm.execCommand("selectAll");
+            }
+        };
+
+        // setting signle key
+        var keyMap2 = {
+              "Ctrl-T": function(cm) {
+                alert("Ctrl+T");
+              }
+        };
+
+        this.addKeyMap(keyMap);
+        this.addKeyMap(keyMap2);
+        this.removeKeyMap(keyMap2);  // remove signle key
+    }
+});
+```
+</textarea>
+        </div>
+    </div>
+</div>
+<script src="./js/jquery.min.js"></script>
+<script>if (typeof module === 'object') {window.jQuery = window.$ = module.exports;};</script>
+<script src="./js/editormd.js"></script>
+<script type="text/javascript">
+
+    var testEditor;
+
+    $(function() {
+        var widgets = [];
+
+        testEditor = editormd("test-editormd", {
+            width: 850,
+            height: 550,
+            path : './lib/',
+            disabledKeyMaps : [
+                "Ctrl-B", "F11", "F10"  // disable some default keyboard shortcuts handle
+            ],
+            onchange : function() {
+                $("#test").remove();
+                var cm = this.cm;
+                var cursor = cm.getCursor();
+
+                //cm.replaceSelection("@");
+
+                widgets.push(cm.addWidget({line : cursor.line, ch : cursor.ch}, $("<p style='z-index:100000;background:red;color:#fff;padding:5px;' id='test'>fsdfsdfsdf</p>")[0], true));
+                console.log(cm.getCursor(), cm.getLine(cursor.line), cm.getLineTokens(cursor.line));
+            },
+            onload : function() {
+                var keyMap = {
+                    "Ctrl-S": function(cm) {
+                        alert("Ctrl+S");
+                        //return false;
+                    },
+                    "Ctrl-A": function(cm) { // default Ctrl-A selectAll
+                        // custom
+                        alert("Ctrl+A");
+                        cm.execCommand("selectAll");
+                    },
+                    //"Shift-2" : function(cm){
+                    //}
+                };
+
+                this.cm.on("keyup", function(cm){
+                    //$("#test").remove();
+                });
+
+                // setting signle key
+                var keyMap2 = {
+                    "Ctrl-T": function(cm) {
+                        alert("Ctrl+T");
+                    }
+                };
+
+                this.addKeyMap(keyMap);
+                this.addKeyMap(keyMap2);
+                this.removeKeyMap(keyMap2);  // remove signle key
+            }
+        });
+    });
+</script>
+</body>
+</html>

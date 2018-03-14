@@ -16,7 +16,8 @@ let dist;
 if (process.env.NODE_ENV === 'dev') {
     dist = {
         home: 'http://localhost:1313',
-        markdown: 'markdown/index.html'
+        markdown: 'markdown/index.html',
+        changecode: 'changecode/index.html'
     };
 } else {
     dist = path.join(__dirname, '../dist');

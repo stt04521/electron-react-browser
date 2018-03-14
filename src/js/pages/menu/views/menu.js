@@ -34,10 +34,14 @@ export default class Menu extends Component {
         console.log('1111')
         ipcRenderer.send('file', ['markdown']);
     };
+    openCodeWindow=()=>{
+        ipcRenderer.send('file', ['changecode']);
+    }
     render () {
         const data = [
             <span onClick={this.openPlayer}>打开视频播放窗口</span>,
-            <span onClick={this.openPDFWindow}>打开PDF浏览窗口</span>,
+            <span onClick={this.openPDFWindow}>打开markdown浏览窗口</span>,
+            <span onClick={this.openCodeWindow}>打开编辑器浏览窗口</span>,
             'Australian walks 100km after outback crash.',
             'Man charged over missing wedding girl.',
             'Los Angeles battles huge wildfires.',
