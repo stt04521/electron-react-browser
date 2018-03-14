@@ -45,11 +45,19 @@ export default class Menu extends Component {
             }
         });
     };
+    openMarkdown = () => {
+        ipcRenderer.send('file', ['markdown']);
+    };
+    openCodeWindow=() => {
+        ipcRenderer.send('file', ['changecode']);
+    }
     render () {
         const data = [
             <span onClick={this.openPlayer}>打开视频播放窗口</span>,
             <span onClick={this.openPDFWindow}>打开PDF浏览窗口</span>,
-            <span onClick={this.openBrowser}>小型浏览器</span>
+            <span onClick={this.openBrowser}>小型浏览器</span>,
+            <span onClick={this.openMarkdown}>打开markdown浏览窗口</span>,
+            <span onClick={this.openCodeWindow}>打开编辑器浏览窗口</span>,
         ];
         return (<div style={{ padding: 20 }}>
             <h3 style={{ marginBottom: 16 }}>Menu</h3>

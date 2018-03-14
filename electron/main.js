@@ -30,7 +30,7 @@ let mainWindow;
 function createMainWindow() {
     // 创建主进程窗口
     mainWindow = new BrowserWindow({
-        width: 300,
+        width: 900,
         height: 600,
         title: title,
         center: true,
