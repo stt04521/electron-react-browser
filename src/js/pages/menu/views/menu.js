@@ -22,6 +22,7 @@ export default class Menu extends Component {
         });
     };
     openBrowser = () => {
+        console.log('111');
         ipcRenderer.send('open', {
             url: 'http://localhost:1313/browser.html#/browser',
             options: {
@@ -29,7 +30,7 @@ export default class Menu extends Component {
                 width: 900,
                 height: 600,
                 // frame:false,
-                resizable: false
+                // resizable: false
             }
         });
     };

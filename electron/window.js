@@ -30,11 +30,11 @@ function ipcMsgPump() {
     });
 
     ipcMain.on('open', (event, args) => {
-        if (_.findIndex(windowHandleArr, { name: args.options.title }) === -1) {
-            const win = new BrowserWindow(args.options);
-            win.once('ready-to-show', () => win.show());
-            win.loadURL(args.url);
-        }
+        const win = new BrowserWindow(args.options);
+        win.once('ready-to-show', () => win.show());
+        win.loadURL(args.url);
+        // if (_.findIndex(windowHandleArr, { name: args.options.title }) === -1) {
+        // }
     });
 
     ipcMain.on('pdf', (event, args) => {
