@@ -24,9 +24,11 @@ const BrowserPageStatus = (props) => {
 const resize = () => {
     Array.prototype.forEach.call(document.querySelectorAll('webview'), (webview) => {
         let obj = webview;
-        // var obj = webview && webview.querySelector('::shadow object') shadow 第一次 获取不到
-        if (obj)
-            webview.style.height = (window.innerHeight - 59) + 'px'; // -61 to adjust for the tabs and navbar regions
+        // var obj = webview && webview.querySelector('::shadow object')
+        if (obj) {
+            console.log(obj);
+            obj.style.height = (window.innerHeight - 59) + 'px'; // -61 to adjust for the tabs and navbar regions
+        }
     });
 };
 
@@ -65,10 +67,11 @@ class BrowserPage extends Component {
         return (
             <div
                 id='browser-page'
-                className={this.props.isActive ? 'visible' : 'hidden'}
+                className={this.props.isActive ? 'webviewVisible' : 'webviewHidden'}
             >
                 <BrowserPageSearch
                     isActive={this.props.page.isSearching}
+                    inputRef={el => this.inputElement = el}
                     onPageSearch={this.onPageSearch}
                 />
                 <webview

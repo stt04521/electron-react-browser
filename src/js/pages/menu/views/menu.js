@@ -29,7 +29,7 @@ export default class Menu extends Component {
                 title: 'player',
                 width: 900,
                 height: 600,
-                // frame:false,
+                frame:false,
                 // resizable: false
             }
         });

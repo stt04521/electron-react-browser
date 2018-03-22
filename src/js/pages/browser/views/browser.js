@@ -40,25 +40,24 @@ export default class BrowserChrome extends Component {
     componentDidMount () {
         for (let k in this.webviewHandlers) {
             this.getWebView().addEventListener(k, this.webviewHandlers[k].bind(this))
-
-            // attach keyboard shortcuts
-            // :TODO: replace this with menu hotkeys
-            let self = this
-            document.body.addEventListener('keydown', e => {
-                if (e.metaKey && e.keyCode === 70) { // cmd+f
-                    // start search
-                    self.getPageObject().isSearching = true
-                    self.setState(self.state)
-
-                    // make sure the search input has focus
-                    self.getPage().querySelector('#browser-page-search input').focus();
-                } else if (e.keyCode === 27) { // esc
-                    // stop search
-                    self.getPageObject().isSearching = false
-                    self.setState(self.state);
-                }
-            });
         }
+        // attach keyboard shortcuts
+        // :TODO: replace this with menu hotkeys
+        let self = this
+        window.addEventListener('keydown', e => {
+            if (e.metaKey && e.keyCode === 70) { // cmd+f
+                // start search
+                self.getPageObject().isSearching = true
+                self.setState(self.state)
+
+                // make sure the search input has focus
+                self.getPage().inputElement.focus();
+            } else if (e.keyCode === 27) { // esc
+                // stop search
+                self.getPageObject().isSearching = false
+                self.setState(self.state);
+            }
+        });
     }
     getWebView = (i) => {
         i = (typeof i === 'undefined') ? this.state.currentPageIndex : i;
@@ -287,7 +286,7 @@ export default class BrowserChrome extends Component {
                                 {...self.pageHandlers}
                                 page={page}
                                 pageIndex={i}
-                                isActive={i === self.state.currentPageIndex}
+                                isActive={i === currentPageIndex}
                             />
                         );
                     }

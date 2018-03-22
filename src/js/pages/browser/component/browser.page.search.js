@@ -9,7 +9,7 @@ export default class BrowserPageSearch extends Component {
     }
     componentDidUpdate (prevProps) {
         if (!prevProps.isActive && this.props.isActive)
-            this.refs.input.getDOMNode().focus();
+            this.refs.input.focus();
     }
     onKeyDown = (e) => {
         if (e.keyCode === 13) {
@@ -19,7 +19,11 @@ export default class BrowserPageSearch extends Component {
     }
     render () {
         return (
-            <div id='browser-page-search' className={this.props.isActive ? 'visible' : 'hidden'}>
+            <div
+                id='browser-page-search'
+                ref={this.props.inputRef}
+                className={this.props.isActive ? 'visible' : 'hidden'}
+            >
                 <input ref='input' type='text' placeholder='Search...' onKeyDown={this.onKeyDown} />
             </div>
         );

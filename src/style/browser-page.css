@@ -1,5 +1,13 @@
 #browser-page {
-  position: relative;
+  position: absolute;
+  width: 100%;
+}
+.webviewHidden{
+  visibility: hidden;
+}
+.webviewVisible{
+
+  z-index: 2;
 }
 
 #browser-page-search {

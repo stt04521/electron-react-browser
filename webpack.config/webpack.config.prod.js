@@ -78,7 +78,18 @@ module.exports = webpackMerge.smart(webpackBase, {
                     }
                 }
             })
-        }]
+        },
+            {
+                test: /\.css$/,
+                include: /node_modules/,
+                loader: 'style-loader!css-loader'
+            },
+            {
+                test: /\.css$/,
+                include: path.resolve(__dirname, '../src/style'),
+                loader: 'style-loader!css-loader'
+            }
+        ]
     },
     plugins: [
         // 将 css 抽取到某个文件夹
